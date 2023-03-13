@@ -17,6 +17,7 @@ public class SpawnManager : MonoBehaviour
     {
         InvokeRepeating("SpawnRandomAnimal", startDelay, spawnInterval);
     }
+    
 
     // Update is called once per frame
     void SpawnRandomAnimal()
@@ -27,7 +28,9 @@ public class SpawnManager : MonoBehaviour
             int animalIndex = Random.Range(0, animalPrefabs.Length);
 
             Instantiate(animalPrefabs[animalIndex], spawnPos, animalPrefabs[animalIndex].transform.rotation);
-
-        
+            Vector3 spawnPosHorizontalNegative = new Vector3(-spawnPosZ, 0, Random.Range(0, spawnRangeX));
+            Instantiate(animalPrefabs[animalIndex], spawnPosHorizontalNegative, Quaternion.Euler(0, 90, 0));
+            Vector3 spawnPosHorizontalPositive = new Vector3(spawnPosZ, 0, Random.Range(0, spawnRangeX));
+            Instantiate(animalPrefabs[animalIndex], spawnPosHorizontalPositive, Quaternion.Euler(0, 90, 0));
     }
 }
